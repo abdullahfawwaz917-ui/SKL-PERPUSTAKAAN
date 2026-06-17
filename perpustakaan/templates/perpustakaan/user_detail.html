@@ -1,0 +1,65 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}Detail User{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <a href="{% url 'user_list' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Kelola User
+    </a>
+    <h1 class="page-title">Detail User</h1>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="field-grid">
+    <div class="field-box">
+      <p class="field-label">ID</p>
+      <p class="field-value">{{ siswa.id }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Nama</p>
+      <p class="field-value">{{ siswa.nama }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Kelas</p>
+      <p class="field-value">{{ siswa.kelas }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">NIS</p>
+      <p class="field-value">{{ siswa.nis }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Status</p>
+      <p class="field-value">
+        {% if siswa.status == 'Aktif' %}
+          <span class="badge badge-green">Aktif</span>
+        {% else %}
+          <span class="badge badge-gray">Nonaktif</span>
+        {% endif %}
+      </p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Total Peminjaman</p>
+      <p class="field-value">{{ siswa.total_peminjaman }}</p>
+    </div>
+    <div class="field-box full">
+      <p class="field-label">Peminjaman Aktif</p>
+      <p class="field-value normal">
+        {% if siswa.jumlah_peminjaman_aktif > 0 %}
+          {{ siswa.jumlah_peminjaman_aktif }} buku masih dipinjam.
+        {% else %}
+          Tidak ada buku yang sedang dipinjam.
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

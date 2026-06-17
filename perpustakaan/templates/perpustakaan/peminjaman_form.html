@@ -1,0 +1,68 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}Pinjam Buku{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <a href="{% url 'peminjaman_list' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Peminjaman Buku
+    </a>
+    <h1 class="page-title">Pinjam Buku</h1>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="{{ form.peminjam.id_for_label }}">Nama Peminjam</label>
+        {{ form.peminjam }}
+        {{ form.peminjam.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.buku.id_for_label }}">Pilih Buku</label>
+        {{ form.buku }}
+        {{ form.buku.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.tanggal_pinjam.id_for_label }}">Tanggal Pinjam</label>
+        {{ form.tanggal_pinjam }}
+        {{ form.tanggal_pinjam.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.tanggal_jatuh_tempo.id_for_label }}">Tanggal Jatuh Tempo</label>
+        {{ form.tanggal_jatuh_tempo }}
+        {{ form.tanggal_jatuh_tempo.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.keperluan.id_for_label }}">Keperluan</label>
+        {{ form.keperluan }}
+        {{ form.keperluan.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.petugas.id_for_label }}">Petugas</label>
+        {{ form.petugas }}
+        {{ form.petugas.errors }}
+      </div>
+      <div class="form-field full">
+        <label for="{{ form.catatan.id_for_label }}">Catatan</label>
+        {{ form.catatan }}
+        {{ form.catatan.errors }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a href="{% url 'peminjaman_list' %}" class="btn btn-outline">Batal</a>
+      <button type="submit" class="btn btn-primary">Pinjam Buku</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

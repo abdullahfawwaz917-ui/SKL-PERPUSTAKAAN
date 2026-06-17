@@ -1,0 +1,61 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}Detail Buku{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <a href="{% url 'buku_list' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Kelola Buku
+    </a>
+    <h1 class="page-title">Detail Buku</h1>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="field-grid">
+    <div class="field-box">
+      <p class="field-label">Judul</p>
+      <p class="field-value">{{ buku.judul }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Pengarang</p>
+      <p class="field-value">{{ buku.pengarang }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Kategori</p>
+      <p class="field-value">{{ buku.kategori }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Penerbit</p>
+      <p class="field-value">{{ buku.penerbit }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Tahun Terbit</p>
+      <p class="field-value">{{ buku.tahun_terbit }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">ISBN</p>
+      <p class="field-value">{{ buku.isbn }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Rak / Lokasi</p>
+      <p class="field-value">{{ buku.rak_lokasi }}</p>
+    </div>
+    <div class="field-box">
+      <p class="field-label">Stok</p>
+      <p class="field-value">{{ buku.stok }}</p>
+    </div>
+    <div class="field-box full">
+      <p class="field-label">Deskripsi</p>
+      <p class="field-value normal">{{ buku.deskripsi|default:"Tidak ada deskripsi." }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

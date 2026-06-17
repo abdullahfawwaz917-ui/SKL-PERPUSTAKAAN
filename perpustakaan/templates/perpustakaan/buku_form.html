@@ -1,0 +1,78 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}{{ judul_halaman }}{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <a href="{% url 'buku_list' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Kelola Buku
+    </a>
+    <h1 class="page-title">{{ judul_halaman }}</h1>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="{{ form.judul.id_for_label }}">Judul Buku</label>
+        {{ form.judul }}
+        {{ form.judul.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.pengarang.id_for_label }}">Pengarang</label>
+        {{ form.pengarang }}
+        {{ form.pengarang.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.kategori.id_for_label }}">Kategori</label>
+        {{ form.kategori }}
+        {{ form.kategori.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.penerbit.id_for_label }}">Penerbit</label>
+        {{ form.penerbit }}
+        {{ form.penerbit.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.tahun_terbit.id_for_label }}">Tahun Terbit</label>
+        {{ form.tahun_terbit }}
+        {{ form.tahun_terbit.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.stok.id_for_label }}">Stok</label>
+        {{ form.stok }}
+        {{ form.stok.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.isbn.id_for_label }}">ISBN</label>
+        {{ form.isbn }}
+        {{ form.isbn.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.rak_lokasi.id_for_label }}">Rak / Lokasi</label>
+        {{ form.rak_lokasi }}
+        {{ form.rak_lokasi.errors }}
+      </div>
+      <div class="form-field full">
+        <label for="{{ form.deskripsi.id_for_label }}">Deskripsi</label>
+        {{ form.deskripsi }}
+        {{ form.deskripsi.errors }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a href="{% url 'buku_list' %}" class="btn btn-outline">Batal</a>
+      <button type="submit" class="btn btn-primary">{{ label_tombol }}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

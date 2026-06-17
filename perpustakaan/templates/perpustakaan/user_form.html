@@ -1,0 +1,53 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}{{ judul_halaman }}{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <a href="{% url 'user_list' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Kelola User
+    </a>
+    <h1 class="page-title">{{ judul_halaman }}</h1>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="{{ form.nama.id_for_label }}">Nama</label>
+        {{ form.nama }}
+        {{ form.nama.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.kelas.id_for_label }}">Kelas</label>
+        {{ form.kelas }}
+        {{ form.kelas.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.nis.id_for_label }}">NIS</label>
+        {{ form.nis }}
+        {{ form.nis.errors }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.status.id_for_label }}">Status</label>
+        {{ form.status }}
+        {{ form.status.errors }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a href="{% url 'user_list' %}" class="btn btn-outline">Batal</a>
+      <button type="submit" class="btn btn-primary">{{ label_tombol }}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

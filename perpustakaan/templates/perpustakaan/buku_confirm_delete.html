@@ -1,0 +1,32 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}Hapus Buku{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <a href="{% url 'buku_list' %}" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Kelola Buku
+    </a>
+    <h1 class="page-title">Hapus Buku</h1>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <p class="delete-intro">Anda akan menghapus:</p>
+  <p class="delete-target">{{ buku.judul }}</p>
+  <p class="delete-note">Data peminjaman yang menggunakan buku ini tidak akan otomatis dihapus.</p>
+
+  <form method="post" class="form-actions">
+    {% csrf_token %}
+    <a href="{% url 'buku_list' %}" class="btn btn-outline">Batal</a>
+    <button type="submit" class="btn btn-danger">Hapus</button>
+  </form>
+</div>
+{% endblock %}

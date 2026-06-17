@@ -1,0 +1,68 @@
+{% extends "perpustakaan/base.html" %}
+
+{% block title %}Daftar Buku{% endblock %}
+
+{% block header %}
+<div class="topbar">
+  <div>
+    <p class="eyebrow">Kelola data buku SIPUSTAKA.</p>
+    <h1 class="page-title">Daftar Buku</h1>
+  </div>
+  <div class="topbar-right">
+    <a href="{% url 'buku_create' %}" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Tambah Buku
+    </a>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Judul</th>
+          <th>Pengarang</th>
+          <th>Kategori</th>
+          <th>Penerbit</th>
+          <th>Tahun</th>
+          <th>Rak</th>
+          <th>Stok</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for buku in buku_list %}
+        <tr>
+          <td>{{ buku.id }}</td>
+          <td class="cell-strong">{{ buku.judul }}</td>
+          <td>{{ buku.pengarang }}</td>
+          <td>{{ buku.kategori }}</td>
+          <td>{{ buku.penerbit }}</td>
+          <td>{{ buku.tahun_terbit }}</td>
+          <td>{{ buku.rak_lokasi }}</td>
+          <td>{{ buku.stok }}</td>
+          <td>
+            <div class="actions-cell">
+              <a href="{% url 'buku_detail' buku.pk %}" class="btn btn-outline btn-table">Detail</a>
+              <a href="{% url 'buku_update' buku.pk %}" class="btn btn-primary btn-table">Edit</a>
+              <a href="{% url 'buku_delete' buku.pk %}" class="btn btn-danger btn-table">Hapus</a>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr class="empty-row">
+          <td colspan="9">Belum ada data buku. Klik &ldquo;Tambah Buku&rdquo; untuk menambahkan.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
